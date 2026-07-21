@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Using MITRE ATT&CK for Blue Team Defense | Salm Bashemakh</title>
+  <meta name="description" content="Practical strategies for mapping detection capabilities to MITRE ATT&CK framework.">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="crt">
+  <canvas id="matrix-canvas"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#projects">Projects</a>
+    <a href="../index.html#writeups">Writeups</a>
+    <a href="../index.html#blog">Blog</a>
+    <a href="../index.html#certs">Certs</a>
+    <a href="../index.html#education">Education</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+
+  <div class="article-page">
+    <div class="article-header">
+      <a href="../index.html#blog" class="back-btn">← Back to Blog</a>
+      <h1>Using MITRE ATT&CK for Blue Team Defense</h1>
+      <div class="meta">2025-07-05 · 8 min read · Salm Bashemakh</div>
+    </div>
+    <div class="article-content">
+      <h2>Why MITRE ATT&CK?</h2>
+      <p>MITRE ATT&CK isn't just a framework — it's a common language for defenders. When I map my detections to ATT&CK, I can communicate coverage gaps, prioritize engineering efforts, and speak the same language as red teamers.</p>
+
+      <h2>Building a Coverage Matrix</h2>
+      <p>Start with your current detections. For each alert, identify the technique it maps to. Then visualize coverage:</p>
+
+      <h3>Example Coverage Table</h3>
+      <pre><code>Technique          | Detection | Data Source       | Confidence
+-------------------|-----------|-------------------|----------
+T1078 Valid Acc    | ✓         | Windows Event 4624| High
+T1558.003 Kerberoast| ✓        | Event 4769      | Medium
+T1003.006 DCSync   | ✓         | Event 4662        | High
+T1059.001 PowerShell| ✓        | Sysmon EID 1      | Medium
+T1021.002 SMBExec  | ✗         | —                 | None</code></pre>
+
+      <h2>Identifying Gaps</h2>
+      <p>Focus on techniques that are:</p>
+      <ul>
+        <li>High-frequency in your threat model</li>
+        <li>Easy for attackers to execute</li>
+        <li>Currently unmonitored in your environment</li>
+      </ul>
+
+      <h2>Practical Implementation</h2>
+      <p>I maintain a simple JSON file mapping each detection rule to ATT&CK techniques. This feeds into a dashboard showing coverage by tactic:</p>
+      <pre><code>{
+  "rule_name": "Detect_Kerberoasting",
+  "technique": "T1558.003",
+  "tactic": "Credential Access",
+  "data_source": "Windows Security 4769",
+  "confidence": "Medium",
+  "last_tested": "2025-07-10"
+}</code></pre>
+
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Don't try to detect everything — prioritize based on your threat model</li>
+        <li>Test your detections regularly with attack simulation</li>
+        <li>Share your coverage matrix with stakeholders to justify engineering time</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>🔒 Built with zero trust. All connections encrypted. | Salm Bashemakh © 2025</p>
+  </div>
+
+  <script src="../assets/main.js"></script>
+</body>
+</html>

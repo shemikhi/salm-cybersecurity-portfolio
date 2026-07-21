@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The SOC Analyst Mindset: Alert Triage Like a Hunter | Salm Bashemakh</title>
+  <meta name="description" content="Moving beyond checkbox alert triage to proactive threat hunting in the SOC.">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="crt">
+  <canvas id="matrix-canvas"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#projects">Projects</a>
+    <a href="../index.html#writeups">Writeups</a>
+    <a href="../index.html#blog">Blog</a>
+    <a href="../index.html#certs">Certs</a>
+    <a href="../index.html#education">Education</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+
+  <div class="article-page">
+    <div class="article-header">
+      <a href="../index.html#blog" class="back-btn">← Back to Blog</a>
+      <h1>The SOC Analyst Mindset: Alert Triage Like a Hunter</h1>
+      <div class="meta">2025-07-20 · 7 min read · Salm Bashemakh</div>
+    </div>
+    <div class="article-content">
+      <h2>Beyond Checkbox Triage</h2>
+      <p>Most SOC analysts treat alerts as tickets to close. The hunter mindset treats every alert as a potential thread in a larger story. Here's how I approach alert triage differently.</p>
+
+      <h2>The Hunter's Framework</h2>
+      <h3>1. Context First</h3>
+      <p>Before touching the alert, I ask: <em>What is this asset? Who uses it? What's its criticality?</em> A PowerShell execution on a developer's workstation is different from the same on a Domain Controller.</p>
+
+      <h3>2. Pattern Recognition</h3>
+      <p>Single alerts are noise. Patterns are signal. I always look for:</p>
+      <ul>
+        <li>Temporal clustering (multiple alerts in short time windows)</li>
+        <li>Asset clustering (same technique across multiple hosts)</li>
+        <li>Technique chaining (recon → initial access → lateral movement)</li>
+      </ul>
+
+      <h3>3. Hypothesis-Driven Investigation</h3>
+      <p>Instead of asking "Is this alert true or false?", ask "If an attacker were here, what would they do next?" Then hunt for those behaviors.</p>
+
+      <h2>Reducing False Positives</h2>
+      <pre><code># Example: Filter out known-good PowerShell usage
+index=sysmon EventCode=1
+| search CommandLine="*powershell*"
+| lookup known_good_scripts.csv script_hash OUTPUT description
+| where isnull(description)
+| stats count by Computer, User, CommandLine
+| where count < 5</code></pre>
+
+      <h2>Building Intuition</h2>
+      <p>Intuition comes from repetition and failure. Every false positive teaches you something about your environment. Document everything. Build your own mental model of "normal."</p>
+
+      <blockquote>
+        "The best SOC analysts don't just respond to alerts — they anticipate attacks before the alert fires."
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>🔒 Built with zero trust. All connections encrypted. | Salm Bashemakh © 2025</p>
+  </div>
+
+  <script src="../assets/main.js"></script>
+</body>
+</html>

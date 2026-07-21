@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS Cloud Security Lab | Salm Bashemakh</title>
+  <meta name="description" content="Hands-on AWS security lab covering IAM, EC2 hardening, and CloudTrail log analysis.">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="crt">
+  <canvas id="matrix-canvas"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#projects">Projects</a>
+    <a href="../index.html#writeups">Writeups</a>
+    <a href="../index.html#blog">Blog</a>
+    <a href="../index.html#certs">Certs</a>
+    <a href="../index.html#education">Education</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+
+  <div class="article-page">
+    <div class="article-header">
+      <a href="../index.html#projects" class="back-btn">← Back to Projects</a>
+      <h1>AWS Cloud Security Lab</h1>
+      <div class="meta">2023 — Present · 12 min read · Salm Bashemakh</div>
+    </div>
+    <div class="article-content">
+      <h2>Lab Overview</h2>
+      <p>This lab focuses on AWS cloud security fundamentals — deploying infrastructure securely, monitoring for misconfigurations, and understanding attack paths specific to cloud environments.</p>
+
+      <h2>Environment Setup</h2>
+      <ul>
+        <li><strong>AWS Account:</strong> Free tier with CloudTrail enabled</li>
+        <li><strong>Compute:</strong> EC2 instances across multiple VPCs</li>
+        <li><strong>Identity:</strong> IAM users, roles, and policies</li>
+        <li><strong>Monitoring:</strong> CloudTrail, CloudWatch Logs, GuardDuty</li>
+      </ul>
+
+      <h2>Security Configurations Tested</h2>
+      <h3>1. IAM Policy Misconfigurations</h3>
+      <p>Created overly permissive IAM policies and tested privilege escalation paths using tools like Pacu and ScoutSuite.</p>
+      <pre><code># Check for overly permissive policies
+aws iam get-policy-version --policy-arn arn:aws:iam::aws:policy/... --version-id v1
+
+# Enumerate permissions with Pacu
+run iam__enum_permissions</code></pre>
+
+      <h3>2. EC2 Security Group Auditing</h3>
+      <p>Audited security groups for open ports (0.0.0.0/0), overly permissive ingress rules, and lack of egress filtering.</p>
+
+      <h3>3. CloudTrail Log Analysis</h3>
+      <p>Built queries to detect suspicious API calls including:</p>
+      <ul>
+        <li>Unauthorized API calls (AccessDenied errors)</li>
+        <li>IAM policy changes outside business hours</li>
+        <li>Console login failures from unknown IPs</li>
+        <li>S3 bucket policy modifications</li>
+      </ul>
+
+      <h2>CloudTrail Detection Queries</h2>
+      <pre><code>fields @timestamp, eventName, eventSource, userIdentity.arn, sourceIPAddress
+| filter errorCode = "AccessDenied"
+| stats count(*) by eventName, sourceIPAddress
+| sort count(*) desc</code></pre>
+
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>CloudTrail is essential but not sufficient — enable GuardDuty for anomaly detection</li>
+        <li>IAM policy conditions (IP restrictions, MFA requirements) significantly reduce blast radius</li>
+        <li>S3 bucket policies are frequently misconfigured — audit them regularly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>🔒 Built with zero trust. All connections encrypted. | Salm Bashemakh © 2025</p>
+  </div>
+
+  <script src="../assets/main.js"></script>
+</body>
+</html>

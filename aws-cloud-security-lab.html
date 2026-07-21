@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a Cybersecurity Home Lab on a Budget | Salm Bashemakh</title>
+  <meta name="description" content="Step-by-step guide to setting up a multi-VM security lab with VMware, Windows Server, Kali Linux, and Splunk.">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="crt">
+  <canvas id="matrix-canvas"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#projects">Projects</a>
+    <a href="../index.html#writeups">Writeups</a>
+    <a href="../index.html#blog">Blog</a>
+    <a href="../index.html#certs">Certs</a>
+    <a href="../index.html#education">Education</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+
+  <div class="article-page">
+    <div class="article-header">
+      <a href="../index.html#blog" class="back-btn">← Back to Blog</a>
+      <h1>Building a Cybersecurity Home Lab on a Budget</h1>
+      <div class="meta">2025-06-15 · 12 min read · Salm Bashemakh</div>
+    </div>
+    <div class="article-content">
+      <h2>Why Build a Home Lab?</h2>
+      <p>You can't defend what you don't understand. A home lab lets you break things safely, build detections, and demonstrate skills to employers — all without risking production systems.</p>
+
+      <h2>Hardware Requirements</h2>
+      <p>Minimum viable setup:</p>
+      <ul>
+        <li><strong>CPU:</strong> 4 cores (8+ recommended)</li>
+        <li><strong>RAM:</strong> 16GB (32GB+ recommended)</li>
+        <li><strong>Storage:</strong> 200GB SSD</li>
+        <li><strong>Hypervisor:</strong> VMware Workstation Pro (free for personal use) or VirtualBox</li>
+      </ul>
+
+      <h2>Lab Architecture</h2>
+      <pre><code>┌─────────────────────────────────────────┐
+│              VMware Host                │
+│  ┌──────────┐  ┌──────────┐            │
+│  │  DC01    │  │ WKSTN01  │            │
+│  │ Win Srv  │  │ Win 10   │            │
+│  │ 4GB RAM  │  │ 4GB RAM  │            │
+│  └──────────┘  └──────────┘            │
+│  ┌──────────┐  ┌──────────┐            │
+│  │ WKSTN02  │  │ KALI     │            │
+│  │ Win 10   │  │ Linux    │            │
+│  │ 4GB RAM  │  │ 4GB RAM  │            │
+│  └──────────┘  └──────────┘            │
+│  ┌──────────┐                          │
+│  │  SPLUNK  │                          │
+│  │  SIEM    │                          │
+│  │ 8GB RAM  │                          │
+│  └──────────┘                          │
+└─────────────────────────────────────────┘</code></pre>
+
+      <h2>Step-by-Step Setup</h2>
+      <h3>1. Domain Controller</h3>
+      <ul>
+        <li>Install Windows Server 2019/2022</li>
+        <li>Promote to Domain Controller (corp.local)</li>
+        <li>Create test users and service accounts</li>
+        <li>Register SPNs for Kerberoasting practice</li>
+      </ul>
+
+      <h3>2. Client Workstations</h3>
+      <ul>
+        <li>Install Windows 10 Enterprise</li>
+        <li>Join to domain</li>
+        <li>Install Sysmon with SwiftOnSecurity config</li>
+        <li>Enable Windows Event Forwarding to Splunk</li>
+      </ul>
+
+      <h3>3. Splunk SIEM</h3>
+      <ul>
+        <li>Download Splunk Enterprise (free 500MB/day license)</li>
+        <li>Install Universal Forwarder on all Windows hosts</li>
+        <li>Configure inputs for Windows Security, Sysmon, and PowerShell logs</li>
+      </ul>
+
+      <h3>4. Kali Linux</h3>
+      <ul>
+        <li>Install Kali Linux 2024.x</li>
+        <li>Tools to install: Impacket, BloodHound, Rubeus, Mimikatz</li>
+        <li>Configure network adapter in NAT/Host-Only mode</li>
+      </ul>
+
+      <h2>First Attack Chain to Practice</h2>
+      <ol>
+        <li>Reconnaissance with BloodHound</li>
+        <li>Kerberoasting with Rubeus</li>
+        <li>Crack the hash with Hashcat</li>
+        <li>Lateral movement with PSExec</li>
+        <li>Build detections in Splunk for each step</li>
+      </ol>
+
+      <h2>Cost Breakdown</h2>
+      <p><strong>Total: $0</strong> (all software has free/trial versions)</p>
+      <ul>
+        <li>VMware Workstation Pro: Free for personal use</li>
+        <li>Windows Server/10: 180-day evaluation</li>
+        <li>Splunk: Free 500MB/day license</li>
+        <li>Kali Linux: Always free</li>
+      </ul>
+
+      <blockquote>
+        "The best investment in your cybersecurity career is a home lab. It pays dividends in interviews, on the job, and in your understanding of how attacks actually work."
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>🔒 Built with zero trust. All connections encrypted. | Salm Bashemakh © 2025</p>
+  </div>
+
+  <script src="../assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Active Directory Attack & Detection Lab | Salm Bashemakh</title>
+  <meta name="description" content="Full walkthrough of building an AD lab, simulating attack chains, and engineering detections in Splunk.">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="crt">
+  <canvas id="matrix-canvas"></canvas>
+
+  <nav class="nav">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#projects">Projects</a>
+    <a href="../index.html#writeups">Writeups</a>
+    <a href="../index.html#blog">Blog</a>
+    <a href="../index.html#certs">Certs</a>
+    <a href="../index.html#education">Education</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
+
+  <div class="article-page">
+    <div class="article-header">
+      <a href="../index.html#projects" class="back-btn">← Back to Projects</a>
+      <h1>Active Directory Attack & Detection Lab</h1>
+      <div class="meta">2022 — Present · 15 min read · Salm Bashemakh</div>
+    </div>
+    <div class="article-content">
+      <h2>Lab Overview</h2>
+      <p>This home lab was built to simulate real-world Active Directory attack chains and develop detection capabilities around them. The environment consists of a Windows Server 2019 Domain Controller, two Windows 10 client VMs, and a Kali Linux attack machine — all running on VMware Workstation.</p>
+
+      <h2>Environment Setup</h2>
+      <ul>
+        <li><strong>Domain Controller:</strong> Windows Server 2019 (DC01.corp.local)</li>
+        <li><strong>Client 1:</strong> Windows 10 Enterprise (WKSTN01)</li>
+        <li><strong>Client 2:</strong> Windows 10 Enterprise (WKSTN02)</li>
+        <li><strong>Attacker:</strong> Kali Linux 2024.2</li>
+        <li><strong>SIEM:</strong> Splunk Enterprise (free license)</li>
+        <li><strong>Telemetry:</strong> Sysmon + Windows Event Forwarding</li>
+      </ul>
+
+      <h2>Attack Chains Simulated</h2>
+      <h3>1. Kerberoasting (T1558.003)</h3>
+      <p>Used Rubeus to request service tickets for SPN-registered accounts. Captured TGS-REP hashes and attempted offline cracking with Hashcat.</p>
+      <pre><code># Request all service tickets
+Rubeus.exe kerberoast /outfile:hashes.txt
+
+# Crack offline
+hashcat -m 13100 hashes.txt wordlist.txt</code></pre>
+
+      <h3>2. AS-REP Roasting (T1558.004)</h3>
+      <p>Identified accounts with "Do not require Kerberos preauthentication" flag set. Used GetNPUsers.py from Impacket to capture AS-REP responses.</p>
+
+      <h3>3. DCSync (T1003.006)</h3>
+      <p>Simulated a compromised account with DCSync rights (Replicating Directory Changes) to pull password hashes from the NTDS.dit database.</p>
+
+      <h3>4. ACL Abuse & Lateral Movement</h3>
+      <p>Used BloodHound to map attack paths through misconfigured ACLs. Performed lateral movement via PSExec and WMIexec after credential compromise.</p>
+
+      <h2>Detection Engineering</h2>
+      <p>For each attack, I built Splunk detection queries correlating multiple data sources:</p>
+
+      <h3>Kerberoasting Detection SPL</h3>
+      <pre><code>index=wineventlog EventCode=4769
+| stats count by Account_Name, Service_Name, Client_Address
+| where count > 5
+| eval risk_score=case(count>20, "High", count>10, "Medium", 1=1, "Low")
+| table _time, Account_Name, Service_Name, Client_Address, risk_score</code></pre>
+
+      <h3>DCSync Detection SPL</h3>
+      <pre><code>index=wineventlog EventCode=4662 OR EventCode=5136
+| search Properties="Replicating Directory Changes"
+| stats count by Account_Name, Object_Name, Properties
+| where count > 3</code></pre>
+
+      <h2>Key Takeaways</h2>
+      <ul>
+        <li>Single-event detection is noisy — correlation rules reduce false positives by 70%+</li>
+        <li>Sysmon Event ID 10 (ProcessAccess) is critical for detecting credential dumping tools</li>
+        <li>MITRE ATT&CK mapping helps prioritize which techniques to detect first based on your threat model</li>
+      </ul>
+
+      <blockquote>
+        "The best defense is understanding the offense. Every detection rule I write starts with me successfully executing the attack first."
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>🔒 Built with zero trust. All connections encrypted. | Salm Bashemakh © 2025</p>
+  </div>
+
+  <script src="../assets/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salm Bashemakh | Cybersecurity Portfolio</title>
+  <meta name="description" content="SOC Analyst | Security Analyst | Cybersecurity - Salm Bashemakh Portfolio">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="crt">
+  <canvas id="matrix-canvas"></canvas>
+
+  <nav class="nav">
+    <a href="#about" class="active">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#writeups">Writeups</a>
+    <a href="#blog">Blog</a>
+    <a href="#certs">Certs</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="about">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      <span>ROOT ACCESS GRANTED</span>
+    </div>
+    <h1 class="glitch" data-text="SALM BASHEMAKH">SALM BASHEMAKH</h1>
+    <p class="subtitle typewriter">SOC Analyst | Security Analyst | Cybersecurity</p>
+    <p class="location">📍 Bremen, Germany | 🛡️ Defending Networks | 🔍 Hunting Threats</p>
+
+    <div class="terminal-box">
+      <div class="terminal-header">
+        <span class="t-red"></span>
+        <span class="t-amber"></span>
+        <span class="t-green"></span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="prompt">root@salm:~$</span> <span class="cmd">whoami</span></div>
+        <div class="output">salm_bashemakh — MSc Cybersecurity | eJPT | AWS CCP</div>
+        <div><span class="prompt">root@salm:~$</span> <span class="cmd">cat mission.txt</span></div>
+        <div class="output">Detect. Analyze. Defend.<br>Building detection labs, simulating attack chains,<br>and mapping threats to <span class="highlight">MITRE ATT&CK</span>.</div>
+        <div><span class="prompt">root@salm:~$</span> <span class="cmd">status</span></div>
+        <div class="output">🟢 <span class="highlight">Open to SOC Analyst / Threat Detection / Security Analyst roles</span></div>
+        <div><span class="prompt">root@salm:~$</span> <span class="cmd">_</span></div>
+      </div>
+    </div>
+
+    <div class="contact-bar">
+      <a class="contact-btn" href="mailto:salemmohammed4690@gmail.com">✉️ Email</a>
+      <a class="contact-btn" href="tel:+4915734858897">📞 +49 1573 4858897</a>
+      <a class="contact-btn" href="https://linkedin.com" target="_blank">🔗 LinkedIn</a>
+      <a class="contact-btn" href="https://github.com" target="_blank">💻 GitHub</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- CORE SKILLS -->
+    <section class="section fade-in" id="skills">
+      <h2 class="section-title">CORE COMPETENCIES</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>🛡️ SOC & Detection</h3>
+          <div class="tags">
+            <span class="tag">Splunk SIEM</span>
+            <span class="tag">Alert Triage</span>
+            <span class="tag">Threat Detection</span>
+            <span class="tag">Windows Event Logs</span>
+            <span class="tag">Sysmon Telemetry</span>
+            <span class="tag">MITRE ATT&CK</span>
+            <span class="tag">EDR Validation</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>⚔️ Offensive Security</h3>
+          <div class="tags">
+            <span class="tag">Kerberoasting</span>
+            <span class="tag">AS-REP Roasting</span>
+            <span class="tag">ACL Abuse</span>
+            <span class="tag">DCSync</span>
+            <span class="tag">Lateral Movement</span>
+            <span class="tag">Privilege Escalation</span>
+            <span class="tag">Metasploit</span>
+            <span class="tag">BloodHound</span>
+            <span class="tag">Burp Suite</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>☁️ Cloud & Infrastructure</h3>
+          <div class="tags">
+            <span class="tag">AWS IAM</span>
+            <span class="tag">EC2</span>
+            <span class="tag">CloudTrail</span>
+            <span class="tag">Windows Server</span>
+            <span class="tag">Active Directory</span>
+            <span class="tag">Linux (Kali/Ubuntu)</span>
+            <span class="tag">VMware</span>
+            <span class="tag">VirtualBox</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>🌐 Networking & Tools</h3>
+          <div class="tags">
+            <span class="tag">Wireshark</span>
+            <span class="tag">tcpdump</span>
+            <span class="tag">Nmap</span>
+            <span class="tag">Masscan</span>
+            <span class="tag">TCP/IP</span>
+            <span class="tag">DNS</span>
+            <span class="tag">HTTP/S</span>
+            <span class="tag">SMB</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>🤖 Scripting & Automation</h3>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Bash</span>
+            <span class="tag">PowerShell</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>🎯 Training Platforms</h3>
+          <div class="tags">
+            <span class="tag">Hack The Box</span>
+            <span class="tag">TryHackMe</span>
+            <span class="tag">CyberWarFare Labs</span>
+            <span class="tag">AWS Labs</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section fade-in" id="experience">
+      <h2 class="section-title">OPERATIONAL HISTORY</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="date">Jul 2025 — Sep 2025</div>
+          <h3 class="role">Cybersecurity Intern</h3>
+          <div class="company">Acronis (CyberFit Program) — Remote, Germany</div>
+          <ul>
+            <li>Built multi-VM cybersecurity labs for endpoint and cloud-integrated detection testing</li>
+            <li>Performed malware behavior analysis, privilege escalation simulation, and lateral movement testing</li>
+            <li>Executed SOC tasks: Windows event log analysis (Event IDs 4624, 4688, 4769), Sysmon triage, EDR response validation</li>
+            <li>Mapped MITRE ATT&CK techniques to test endpoint and cloud detection paths; identified and documented detection gaps</li>
+            <li>Automated data collection and test workflows using Python and Bash scripting</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="date">Jul 2024 — Sep 2024</div>
+          <h3 class="role">CyberFit Intern</h3>
+          <div class="company">Acronis — Remote, Germany</div>
+          <ul>
+            <li>Developed cybersecurity training material and customer-facing security documentation</li>
+            <li>Supported technical troubleshooting and knowledge-base updates for security teams</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="date">Sep 2020 — Aug 2023</div>
+          <h3 class="role">Security Professional (Confidential)</h3>
+          <div class="company">Confidential Client — On-site</div>
+          <ul>
+            <li>Conducted OSINT investigations to collect and analyze intelligence for security assessments</li>
+            <li>Monitored and analyzed system and security logs using Splunk to identify anomalies and support incident detection</li>
+            <li>Investigated security events and contributed to incident response activities; documented findings and workflow improvements</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="date">Jun 2021 — Sep 2021</div>
+          <h3 class="role">IT Support Engineer Intern</h3>
+          <div class="company">LINEX — Kuala Lumpur, Malaysia</div>
+          <ul>
+            <li>Troubleshot hardware, software, and network issues; performed device configuration and onboarding</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section fade-in" id="projects">
+      <h2 class="section-title">THREAT LABS & PROJECTS</h2>
+      <div class="projects-grid">
+        <a href="writeups/ad-attack-detection-lab.html" class="project-card">
+          <span class="status">● ACTIVE SINCE 2022</span>
+          <h3>Active Directory Attack & Detection Lab</h3>
+          <p>Built and configured a full Windows AD environment (Domain Controller + client VMs) using VMware. Simulated attack chains including Kerberoasting, AS-REP Roasting, ACL abuse, DCSync, and local privilege escalation — all mapped to MITRE ATT&CK. Analyzed Windows Event Logs and Sysmon telemetry, then built detection queries in Splunk.</p>
+          <div class="tech-stack">
+            <span class="tech">VMware</span>
+            <span class="tech">Windows Server</span>
+            <span class="tech">Splunk</span>
+            <span class="tech">Sysmon</span>
+            <span class="tech">MITRE ATT&CK</span>
+            <span class="tech">BloodHound</span>
+          </div>
+        </a>
+        <a href="writeups/aws-cloud-security-lab.html" class="project-card">
+          <span class="status">● ACTIVE SINCE 2023</span>
+          <h3>AWS Cloud Security Lab</h3>
+          <p>Deployed and secured EC2 infrastructure with hardened IAM policies and security groups. Reviewed CloudTrail logs for suspicious activity and tested IAM misconfiguration attack paths to strengthen cloud security posture.</p>
+          <div class="tech-stack">
+            <span class="tech">AWS EC2</span>
+            <span class="tech">IAM</span>
+            <span class="tech">CloudTrail</span>
+            <span class="tech">Security Groups</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- WRITEUPS -->
+    <section class="section fade-in" id="writeups">
+      <h2 class="section-title">CTF WRITEUPS & LAB NOTES</h2>
+      <div class="blog-grid">
+        <a href="writeups/kerberoasting-detection-splunk.html" class="blog-card">
+          <div class="date">2025-07-15</div>
+          <h3>Detecting Kerberoasting with Splunk & Sysmon</h3>
+          <p>A deep dive into identifying Kerberoasting attempts using Windows Event ID 4769 and Sysmon Event ID 10. Includes Splunk SPL queries and MITRE ATT&CK mapping.</p>
+          <div class="tags">
+            <span class="tag">Kerberoasting</span>
+            <span class="tag">Splunk</span>
+            <span class="tag">Sysmon</span>
+            <span class="tag">T1558.003</span>
+          </div>
+        </a>
+        <a href="writeups/dcsync-detection.html" class="blog-card">
+          <div class="date">2025-06-28</div>
+          <h3>DCSync Attack: Detection & Response</h3>
+          <p>How to spot DCSync abuse through Event ID 4662 and 5136. Building correlation rules and understanding the attack lifecycle from initial access to credential dumping.</p>
+          <div class="tags">
+            <span class="tag">DCSync</span>
+            <span class="tag">Active Directory</span>
+            <span class="tag">T1003.006</span>
+          </div>
+        </a>
+        <a href="writeups/aws-iam-misconfigurations.html" class="blog-card">
+          <div class="date">2025-05-10</div>
+          <h3>AWS IAM Misconfiguration Attack Paths</h3>
+          <p>Exploring common IAM policy misconfigurations that lead to privilege escalation in AWS. CloudTrail log analysis and remediation strategies.</p>
+          <div class="tags">
+            <span class="tag">AWS</span>
+            <span class="tag">IAM</span>
+            <span class="tag">CloudTrail</span>
+            <span class="tag">T1078</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="section fade-in" id="blog">
+      <h2 class="section-title">SECURITY BLOG</h2>
+      <div class="blog-grid">
+        <a href="blog/soc-analyst-mindset.html" class="blog-card">
+          <div class="date">2025-07-20</div>
+          <h3>The SOC Analyst Mindset: Alert Triage Like a Hunter</h3>
+          <p>Moving beyond checkbox alert triage to proactive threat hunting. How to build intuition, reduce false positives, and prioritize incidents effectively.</p>
+          <div class="tags">
+            <span class="tag">SOC</span>
+            <span class="tag">Threat Hunting</span>
+            <span class="tag">Alert Triage</span>
+          </div>
+        </a>
+        <a href="blog/mitre-attack-blue-team.html" class="blog-card">
+          <div class="date">2025-07-05</div>
+          <h3>Using MITRE ATT&CK for Blue Team Defense</h3>
+          <p>Practical strategies for mapping detection capabilities to MITRE ATT&CK. Building a coverage matrix and identifying gaps in your SOC.</p>
+          <div class="tags">
+            <span class="tag">MITRE ATT&CK</span>
+            <span class="tag">Blue Team</span>
+            <span class="tag">Detection Engineering</span>
+          </div>
+        </a>
+        <a href="blog/home-lab-guide.html" class="blog-card">
+          <div class="date">2025-06-15</div>
+          <h3>Building a Cybersecurity Home Lab on a Budget</h3>
+          <p>Step-by-step guide to setting up a multi-VM lab with VMware, Windows Server, Kali Linux, and Splunk — all on consumer hardware.</p>
+          <div class="tags">
+            <span class="tag">Home Lab</span>
+            <span class="tag">VMware</span>
+            <span class="tag">Splunk</span>
+            <span class="tag">Kali</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CERTS -->
+    <section class="section fade-in" id="certs">
+      <h2 class="section-title">CREDENTIALS</h2>
+      <div class="certs-grid">
+        <div class="cert-card">
+          <span class="badge">✓</span>
+          <div class="cert-icon">🎯</div>
+          <h4>eJPT</h4>
+          <div class="issuer">INE Security — Junior Penetration Tester</div>
+        </div>
+        <div class="cert-card">
+          <span class="badge">✓</span>
+          <div class="cert-icon">☁️</div>
+          <h4>AWS Certified Cloud Practitioner</h4>
+          <div class="issuer">Amazon Web Services</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">📡</div>
+          <h4>CCNA</h4>
+          <div class="issuer">Cisco — In Progress</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🔐</div>
+          <h4>CompTIA Security+</h4>
+          <div class="issuer">In Progress</div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon">🛡️</div>
+          <h4>SOC Operations</h4>
+          <div class="issuer">In Progress</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section fade-in" id="education">
+      <h2 class="section-title">EDUCATION</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="date">2023 — 2025</div>
+          <h3 class="role">MSc Computer Science — Cyber Security</h3>
+          <div class="company">Constructor University · Bremen, Germany</div>
+          <ul>
+            <li>Network Security · Penetration Testing · Cloud Security · Digital Forensics · Secure Systems</li>
+          </ul>
+        </div>
+        <div class="timeline-item">
+          <div class="date">2017 — 2021</div>
+          <h3 class="role">Bachelor's Degree — Computer Networks (Honours)</h3>
+          <div class="company">SEGi University · Malaysia</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / STATUS -->
+    <section class="section fade-in" id="contact" style="text-align:center;">
+      <h2 class="section-title" style="justify-content:center;">OPERATIONAL STATUS</h2>
+      <div class="terminal-box" style="max-width:700px; margin:0 auto;">
+        <div class="terminal-header">
+          <span class="t-red"></span>
+          <span class="t-amber"></span>
+          <span class="t-green"></span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="prompt">root@salm:~$</span> <span class="cmd">locale</span></div>
+          <div class="output">Arabic [Native] | English [Fluent] | German [Intermediate A2/B1 — actively improving]</div>
+          <div><span class="prompt">root@salm:~$</span> <span class="cmd">work_permit --check</span></div>
+          <div class="output">✓ Valid residence & work permit — eligible to work in Germany</div>
+          <div><span class="prompt">root@salm:~$</span> <span class="cmd">roles --search</span></div>
+          <div class="output">SOC Analyst | Threat Detection Engineer | Security Analyst | MSSP Roles</div>
+          <div><span class="prompt">root@salm:~$</span> <span class="cmd">_</span></div>
+        </div>
+      </div>
+      <div class="contact-bar" style="margin-top:40px;">
+        <a class="contact-btn" href="mailto:salemmohammed4690@gmail.com">✉️ Email</a>
+        <a class="contact-btn" href="tel:+4915734858897">📞 +49 1573 4858897</a>
+        <a class="contact-btn" href="https://linkedin.com" target="_blank">🔗 LinkedIn</a>
+        <a class="contact-btn" href="https://github.com" target="_blank">💻 GitHub</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer">
+    <p>🔒 Built with zero trust. All connections encrypted. | Salm Bashemakh © 2025</p>
+    <p style="margin-top:8px; font-size:10px; color:var(--neon-green);">root@salm:~$ exit // session terminated gracefully</p>
+  </div>
+
+  <script src="assets/main.js"></script>
+</body>
+</html>
