@@ -1,75 +1,75 @@
-// Matrix Rain Effect
-const canvas = document.getElementById('matrix-canvas');
-if (canvas) {
-  const ctx = canvas.getContext('2d');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The SOC Analyst Mindset: Alert Triage Like a Hunter | Salm Bashemakh</title>
+  <meta name="description" content="Moving beyond checkbox alert triage to proactive threat hunting in the SOC.">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body class="crt">
+  <canvas id="matrix-canvas"></canvas>
 
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = Math.max(document.body.scrollHeight, window.innerHeight);
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+  <nav class="nav">
+    <a href="../index.html#about">About</a>
+    <a href="../index.html#skills">Skills</a>
+    <a href="../index.html#experience">Experience</a>
+    <a href="../index.html#projects">Projects</a>
+    <a href="../index.html#writeups">Writeups</a>
+    <a href="../index.html#blog">Blog</a>
+    <a href="../index.html#certs">Certs</a>
+    <a href="../index.html#education">Education</a>
+    <a href="../index.html#contact">Contact</a>
+  </nav>
 
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?/~`アイウエオカキクケコサシスセソ';
-  const fontSize = 14;
-  let columns = Math.floor(canvas.width / fontSize);
-  let drops = Array(columns).fill(1);
+  <div class="article-page">
+    <div class="article-header">
+      <a href="../index.html#blog" class="back-btn">← Back to Blog</a>
+      <h1>The SOC Analyst Mindset: Alert Triage Like a Hunter</h1>
+      <div class="meta">2025-07-20 · 7 min read · Salm Bashemakh</div>
+    </div>
+    <div class="article-content">
+      <h2>Beyond Checkbox Triage</h2>
+      <p>Most SOC analysts treat alerts as tickets to close. The hunter mindset treats every alert as a potential thread in a larger story. Here's how I approach alert triage differently.</p>
 
-  window.addEventListener('resize', () => {
-    columns = Math.floor(canvas.width / fontSize);
-    drops = Array(columns).fill(1);
-  });
+      <h2>The Hunter's Framework</h2>
+      <h3>1. Context First</h3>
+      <p>Before touching the alert, I ask: <em>What is this asset? Who uses it? What's its criticality?</em> A PowerShell execution on a developer's workstation is different from the same on a Domain Controller.</p>
 
-  function drawMatrix() {
-    ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#00ff41';
-    ctx.font = fontSize + 'px monospace';
+      <h3>2. Pattern Recognition</h3>
+      <p>Single alerts are noise. Patterns are signal. I always look for:</p>
+      <ul>
+        <li>Temporal clustering (multiple alerts in short time windows)</li>
+        <li>Asset clustering (same technique across multiple hosts)</li>
+        <li>Technique chaining (recon → initial access → lateral movement)</li>
+      </ul>
 
-    for (let i = 0; i < drops.length; i++) {
-      const text = chars.charAt(Math.floor(Math.random() * chars.length));
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
-    }
-  }
-  setInterval(drawMatrix, 50);
-}
+      <h3>3. Hypothesis-Driven Investigation</h3>
+      <p>Instead of asking "Is this alert true or false?", ask "If an attacker were here, what would they do next?" Then hunt for those behaviors.</p>
 
-// Scroll Reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
+      <h2>Reducing False Positives</h2>
+      <pre><code># Example: Filter out known-good PowerShell usage
+index=sysmon EventCode=1
+| search CommandLine="*powershell*"
+| lookup known_good_scripts.csv script_hash OUTPUT description
+| where isnull(description)
+| stats count by Computer, User, CommandLine
+| where count < 5</code></pre>
 
-document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+      <h2>Building Intuition</h2>
+      <p>Intuition comes from repetition and failure. Every false positive teaches you something about your environment. Document everything. Build your own mental model of "normal."</p>
 
-// Terminal typing effect
-const terminalLines = document.querySelectorAll('.terminal-body > div');
-terminalLines.forEach((line, i) => {
-  line.style.opacity = '0';
-  setTimeout(() => {
-    line.style.transition = 'opacity 0.3s';
-    line.style.opacity = '1';
-  }, i * 200 + 500);
-});
+      <blockquote>
+        "The best SOC analysts don't just respond to alerts — they anticipate attacks before the alert fires."
+      </blockquote>
+    </div>
+  </div>
 
-// Active nav link
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    if (scrollY >= sectionTop) current = section.getAttribute('id');
-  });
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === '#' + current) link.classList.add('active');
-  });
-});
+  <div class="footer">
+    <p>🔒 Built with zero trust. All connections encrypted. | Salm Bashemakh © 2025</p>
+  </div>
+
+  <script src="../assets/main.js"></script>
+</body>
+</html>
